@@ -1,0 +1,6 @@
+CREATE TABLE groups (
+	id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+	name VARCHAR(100) UNIQUE,
+	description VARCHAR(200),
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
