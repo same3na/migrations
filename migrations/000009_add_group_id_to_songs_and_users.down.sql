@@ -1,15 +1,9 @@
-ALTER TABLE "songs"
-DROP CONSTRAINT songs_group_id_fk_group,
-DROP COLUMN group_id;
+DROP TABLE if exists groups_songs;
+DROP TABLE if exists groups_users;
+DROP TABLE if exists groups_artists;
+DROP TABLE if exists groups_search;
 
-alter table "users"
-drop constraint users_group_id_fk_group,
-drop column group_id;
-
-alter table "artists"
-drop constraint artists_group_id_fk_group,
-drop column group_id;
-
-alter table "search"
-drop constraint search_group_id_fk_group,
-drop column group_id;
+DROP INDEX IF EXISTS idx_groups_songs_song_id;
+DROP INDEX IF EXISTS idx_groups_users_user_id;
+DROP INDEX IF EXISTS idx_groups_artists_artist_id;
+DROP INDEX IF EXISTS idx_groups_search_search_id;

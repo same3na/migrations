@@ -1,19 +1,28 @@
-ALTER TABLE "songs"
-ADD COLUMN group_id UUID DEFAULT NULL,
-ADD CONSTRAINT songs_group_id_fk_group
-FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE;
+CREATE TABLE groups_songs (
+	song_id UUID REFERENCES songs(id) ON DELETE CASCADE,
+	group_id UUID REFERENCES groups(id) ON DELETE CASCADE,
+	PRIMARY KEY (group_id, song_id)
+);
 
-ALTER TABLE "users"
-ADD COLUMN group_id UUID DEFAULT NULL,
-ADD CONSTRAINT users_group_id_fk_group
-FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE;
+CREATE TABLE groups_users (
+	user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+	group_id UUID REFERENCES groups(id) ON DELETE CASCADE,
+	PRIMARY KEY (group_id, user_id)
+);
 
-ALTER TABLE "artists"
-ADD COLUMN group_id UUID DEFAULT NULL,
-ADD CONSTRAINT artists_group_id_fk_group
-FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE;
+CREATE TABLE groups_artists (
+	artist_id UUID REFERENCES artists(id) ON DELETE CASCADE,
+	group_id UUID REFERENCES groups(id) ON DELETE CASCADE,
+	PRIMARY KEY (group_id, artist_id)
+);
 
-ALTER TABLE "search"
-ADD COLUMN group_id UUID DEFAULT NULL,
-ADD CONSTRAINT search_group_id_fk_group
-FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE;
+CREATE TABLE groups_search (
+	search_id UUID REFERENCES search(id) ON DELETE CASCADE,
+	group_id UUID REFERENCES groups(id) ON DELETE CASCADE,
+	PRIMARY KEY (group_id, search_id)
+);
+
+CREATE INDEX idx_groups_songs_song_id ON groups_songs (song_id);
+CREATE INDEX idx_groups_users_user_id ON groups_users (user_id);
+CREATE INDEX idx_groups_artists_artist_id ON groups_artists (artist_id);
+CREATE INDEX idx_groups_search_search_id ON groups_search (search_id);
