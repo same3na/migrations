@@ -16,6 +16,7 @@ CREATE TABLE songs (
 	album_name VARCHAR(200),
 	external_url VARCHAR(200),
 	analyze_success BOOLEAN DEFAULT NULL,
+	data_extracted_success BOOLEAN DEFAULT NULL,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
